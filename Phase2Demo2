@@ -1,0 +1,49 @@
+package com.Threads.Phase2;
+
+class NumberThread extends Thread{
+	public void run() {
+		for(int i=0;i<10;i++) {
+			System.out.println("Number Thread: "+(i+1));
+			try {
+				Thread.sleep(500);
+			}
+			catch(InterruptedException e) {
+				System.out.println(e);
+			}
+		}
+	}
+}
+
+class AlphabetsThread extends Thread{
+	public void run() {
+		for(char i='A';i<='E';i++) {
+			System.out.println("Alphabets Thread: "+(i));
+			try {
+				Thread.sleep(500);
+			}
+			catch(InterruptedException e) {
+				System.out.println(e);
+			}
+		}
+	}
+}
+
+public class Phase2Demo2 {
+
+	public static void main(String[] args) {
+		NumberThread t1 = new NumberThread();
+		AlphabetsThread t2 = new AlphabetsThread();
+		t1.start();
+		try {
+			t1.join();
+		}
+		catch(InterruptedException e) {
+			System.out.println(e);
+		}
+		
+		t2.start();
+		
+
+	}
+
+}
